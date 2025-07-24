@@ -1,0 +1,62 @@
+@model MvcRegisterApp.Models.User
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "_Layout";
+}
+
+<div class="form-container">
+    <h2>Регистрация</h2>
+    <form asp-action="Register" method="post">
+        <label asp-for="Username"></label>
+        <input asp-for="Username" />
+        <span class="error" asp-validation-for="Username"></span>
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        <span class="error" asp-validation-for="Email"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" />
+        <span class="error" asp-validation-for="Password"></span>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+
+<style>
+    .form-container {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        width: 400px;
+        margin: 30px auto;
+    }
+    label {
+        display: block;
+        margin-bottom: 6px;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 5px;
+    }
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>

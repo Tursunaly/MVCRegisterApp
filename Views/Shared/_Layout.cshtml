@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MvcRegisterApp</title>
+
+    <!-- Подключение темы -->
+    <link id="theme-style" rel="stylesheet" href="~/css/light.css" />
+
+    <!-- Bootstrap и остальное -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MvcRegisterApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        ...
+    </header>
+
+    <div class="container">
+        <!-- 🔘 Переключатель темы — можно поместить куда угодно -->
+        <div class="text-end">
+            <button id="toggle-theme" class="btn btn-sm btn-outline-primary mb-3">🌙 Переключить тему</button>
+        </div>
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        ...
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- 🔧 Скрипт переключения темы -->
+   <script>
+    const toggleBtn = document.getElementById('toggle-theme');
+    const themeLink = document.getElementById('theme-style');
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        themeLink.href = `/css/${savedTheme}.css`;
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        const current = themeLink.href.includes('light') ? 'dark' : 'light';
+        themeLink.href = `/css/${current}.css`;
+        localStorage.setItem('theme', current);
+    });
+</script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+<link id="theme-style" rel="stylesheet" href="/css/light.css" />
+<link rel="stylesheet" href="/css/dark.css" />
+
